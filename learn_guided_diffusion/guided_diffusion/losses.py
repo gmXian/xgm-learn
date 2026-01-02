@@ -14,10 +14,11 @@ def normal_kl(mean1, logvar1, mean2, logvar2):
     Returns:
         KL divergence between the two distributions.
     """
+    # 捕获输入中的某一个 Tensor 实例。这样后续调用 .to(tensor) 时，可以将新创建的标量 Tensor 自动移动到和输入数据相同的设备（CPU/GPU）和数据类型上。
     tensor = None
     for obj in (mean1, logvar1, mean2, logvar2):
         if isinstance(obj, th.Tensor):
-            tensor = th
+            tensor = obj 
             break
     assert tensor is not None, "At least one input must be a tensor."
 
